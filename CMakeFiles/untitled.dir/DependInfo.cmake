@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/berkintatlisu/CLionProjects/untitled/main.cpp" "/Users/berkintatlisu/CLionProjects/untitled/cmake-build-debug/CMakeFiles/test.dir/main.cpp.o"
+  "/Users/berkintatlisu/CLionProjects/untitled/main.cpp" "/Users/berkintatlisu/CLionProjects/untitled/CMakeFiles/untitled.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/usr/local/Cellar/glew/2.1.0_1/include/GL"
-  "/usr/local/Cellar/glfw/3.3.2/include/GLFW"
+  "/Library/Frameworks/SDL2.framework/Headers"
+  "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/Library/Frameworks/OpenGL.framework"
   )
 
 # Targets to which this target links.

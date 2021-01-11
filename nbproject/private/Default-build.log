@@ -1,0 +1,23 @@
+Scanning dependencies of target untitled
+[ 50%] Building CXX object CMakeFiles/untitled.dir/main.cpp.o
+/Users/berkintatlisu/CLionProjects/untitled/main.cpp:113:51: warning: 'gluErrorString' is deprecated: first deprecated in macOS 10.9 - OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings) [-Wdeprecated-declarations]
+        printf("Error initializing OpenGL! %s\n", gluErrorString(error));
+                                                  ^
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h:260:24: note: 'gluErrorString' has been explicitly marked deprecated here
+extern const GLubyte * gluErrorString (GLenum error) OPENGL_DEPRECATED(10.0, 10.9);
+                       ^
+/Users/berkintatlisu/CLionProjects/untitled/main.cpp:124:51: warning: 'gluErrorString' is deprecated: first deprecated in macOS 10.9 - OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings) [-Wdeprecated-declarations]
+        printf("Error initializing OpenGL! %s\n", gluErrorString(error));
+                                                  ^
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h:260:24: note: 'gluErrorString' has been explicitly marked deprecated here
+extern const GLubyte * gluErrorString (GLenum error) OPENGL_DEPRECATED(10.0, 10.9);
+                       ^
+/Users/berkintatlisu/CLionProjects/untitled/main.cpp:134:51: warning: 'gluErrorString' is deprecated: first deprecated in macOS 10.9 - OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings) [-Wdeprecated-declarations]
+        printf("Error initializing OpenGL! %s\n", gluErrorString(error));
+                                                  ^
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h:260:24: note: 'gluErrorString' has been explicitly marked deprecated here
+extern const GLubyte * gluErrorString (GLenum error) OPENGL_DEPRECATED(10.0, 10.9);
+                       ^
+3 warnings generated.
+[100%] Linking CXX executable untitled
+[100%] Built target untitled

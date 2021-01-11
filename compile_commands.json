@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/berkintatlisu/CLionProjects/untitled",
+  "command": "/Users/berkintatlisu/CLionProjects/untitled/nbproject/private/tools/localhost/GNU/g++   -I/Library/Frameworks/SDL2.framework/Headers -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/Library/Frameworks  -g3 -gdwarf-2 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk -mmacosx-version-min=10.15   -F/Library/Frameworks  -std=gnu++11 -o CMakeFiles/untitled.dir/main.cpp.o -c /Users/berkintatlisu/CLionProjects/untitled/main.cpp",
+  "file": "/Users/berkintatlisu/CLionProjects/untitled/main.cpp"
+}
+]

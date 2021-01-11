@@ -1,0 +1,3 @@
+/Users/berkintatlisu/CLionProjects/untitled/CMakeFiles/rebuild_cache.dir
+/Users/berkintatlisu/CLionProjects/untitled/CMakeFiles/edit_cache.dir
+/Users/berkintatlisu/CLionProjects/untitled/CMakeFiles/untitled.dir
