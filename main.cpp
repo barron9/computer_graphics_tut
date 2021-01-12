@@ -69,6 +69,7 @@ bool init() {
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
 
         SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+        SDL_SetRelativeMouseMode(SDL_TRUE);
         //Create window
         gWindow = SDL_CreateWindow("gl", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT,
                 SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
@@ -105,7 +106,7 @@ bool initGL() {
 
     //Initialize Projection Matrix
     glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+   // glLoadIdentity();
     glOrtho(-1.0, 1.0, -1.0, 1.0, -100.0, 100.0);
     //Check for error
     error = glGetError();
@@ -115,8 +116,8 @@ bool initGL() {
     }
 
     //Initialize Modelview Matrix
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
 
     //Check for error
     error = glGetError();
@@ -151,8 +152,8 @@ void update() {
 
 void SetupRC() {
     // Light values and coordinates
-    GLfloat ambientLight[] = {0.0f, 0.0f, 0.0f, 0.0f};
-    GLfloat diffuseLight[] = {0.0f, 0.0f, 0.0f, 0.0f};
+    GLfloat ambientLight[] = {0.5f, .5f, .5f, 1.0f};
+    GLfloat diffuseLight[] = {.5f, .5f, 0.5f, 1.0f};
     glEnable(GL_DEPTH_TEST); // Hidden surface removal
     glFrontFace(GL_CCW); // Counterclockwise polygons face out
     //glEnable(GL_CULL_FACE); // Do not calculate inside of jet
@@ -162,38 +163,66 @@ void SetupRC() {
     glLightfv(GL_LIGHT1, GL_AMBIENT, ambientLight);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseLight);
     glEnable(GL_LIGHT1);
-   // glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambientLight);
+    // glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambientLight);
     // Enable color tracking
     glEnable(GL_COLOR_MATERIAL);
     // Set material properties to follow glColor values
     glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
+#define PI 3.14
 
-void render() {
+void render(float angle) {
     //Clear color buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     SetupRC();
     if (gRenderQuad) {
+
+        glBegin(GL_POINTS);
+        for (int k = -10; k < 10; ++k) {
+            for (int g = -10; g < 10; ++g) {
+                for (int j = -10; j < 10; ++j) {
+                    // glVertex3f(.30f * g, .30f * k, .30f * j);
+                }
+            }
+        }
+        glEnd();
+        // glLoadIdentity();
+        
+        glPushMatrix();
+       // glMatrixMode(GL_MODELVIEW);
+        //angle++;
+        //glRotatef(angle, 0, 1, 0);
+   
+        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        for (int y = 0; y < 5; y++) {
+            glBegin(GL_TRIANGLES);
+            glColor3ub(0, 255, 128);
+            glVertex3f(-.25f * y, 0.0f, .10f);
+            glColor3ub(0, 255, 0);
+            glVertex3f(0.0f, .30f * y, .10f);
+            glColor3ub(255, 5, 8);
+            glVertex3f(0.0f, 0.0f, -.16f * y);
+            glEnd();
+        }
+        glPopMatrix();
+        // glLoadIdentity();
+
        
-        glBegin(GL_TRIANGLES); //GLPOLYGON
-
-
-
-        glVertex3f(-.15f, 0.0f, .10f);
-        glVertex3f(0.0f, .10f, .10f);
-        glVertex3f(0.0f, 0.0f, -.16f);
-
-
+        glPushMatrix(); 
+        //angle++;
+        glRotatef(angle, 0, 1, 0);
+        //glPolygonMode(GL_BACK, GL_LINE);
+        glColor3ub(255, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3f(.6f, 0.0f, 0.0f);
+        glVertex3f(0.0f, .6f, 0.0f);
+        glVertex3f(-.6f, 0.0f, 0.0f);
+        glVertex3f(0.0f, -.6f, 0.0f);
         glEnd();
-
-
-        glBegin(GL_TRIANGLES); //GLPOLYGON
-        glVertex3f(-.25f, 0.0f, .10f);
-        glVertex3f(0.0f, .30f, .10f);
-        glVertex3f(0.0f, 0.0f, -.16f);
-        glEnd();
+        // }
+        glPopMatrix();
     }
 
     glEnable(GL_DEPTH_TEST);
@@ -212,6 +241,7 @@ void close() {
 }
 
 int main(int argc, char *args[]) {
+    float angle = 1;
     //Start up SDL and create window
     if (!init()) {
         printf("Failed to initialize!\n");
@@ -227,8 +257,8 @@ int main(int argc, char *args[]) {
 
         //While application is running
         while (!quit) {
-            glRotatef(2, 0, 1, 0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            // glViewport(0,0,500,300);
+
             //Handle events on queue
             while (SDL_PollEvent(&e) != 0) {
                 //User requests quit
@@ -240,7 +270,14 @@ int main(int argc, char *args[]) {
                     SDL_GetMouseState(&x, &y);
                     handleKeys(e.text.text[0], x, y);
                 }
-
+                if (e.type == SDL_MOUSEMOTION) {
+                    e.motion.xrel;
+                    e.motion.yrel;
+                    //glRotatef(e.motion.xrel / 3, 0, 1, 0);
+                    //glRotatef(e.motion.yrel / 3, 0, 0, 1);
+                    
+                    //quit = true;
+                }
                 if (e.type == SDL_KEYDOWN) {
                     switch (e.key.keysym.sym) {
                         case 1073741903:
@@ -250,19 +287,20 @@ int main(int argc, char *args[]) {
 
                             break;
                         case 1073741905:
-                            glRotatef(5, 0, 0, 0);
-                            glTranslatef(0, 0, 0);
+                            angle += 1 ; 
+                           // glRotatef(5, 0, 0, 0);
+                            //glTranslatef(0, 0, 0);
                             break;
                         case 1073741906:
-                            glRotatef(-5, 0, 0, 0);
-                            glTranslatef(0, 0, 0);
+                         //   glRotatef(-5, 0, 0, 0);
+                           // glTranslatef(0, 0, 0);
                             break;
                     }
                 }
             }
 
             //Render quad
-            render();
+            render(angle);
 
             //Update screen
             SDL_GL_SwapWindow(gWindow);
